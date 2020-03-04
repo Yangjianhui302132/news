@@ -1,0 +1,25 @@
+server:
+  port: 8095
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: member-service
+          uri: lb://member-service
+          predicates:
+            - Path=/news/member/**
+          filters:
+            - StripPrefix=2
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+eureka:
+  regist:
+    host: localhost
+    port: 8090
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.regist.host}:${eureka.regist.port}/eureka/

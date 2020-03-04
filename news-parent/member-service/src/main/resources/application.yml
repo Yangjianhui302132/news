@@ -1,0 +1,19 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: member-service
+
+eureka:
+  regist:
+    host: localhost
+    port: 8090
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.regist.host}:${eureka.regist.port}/eureka/
+
+
+feign:
+  hystrix:
+    enabled: true
